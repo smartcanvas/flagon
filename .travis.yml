@@ -6,6 +6,8 @@ python:
     - "2.7"
 
 env:
+env:
+- GAE=${HOME}/.cache/google_appengine
   global:
   - API_CHECK=https://appengine.google.com/api/updatecheck
 
@@ -14,7 +16,7 @@ before_script:
 - SDK_VERSION=$(curl -s $API_CHECK | awk -F '\"' '/release/ {print $2}')
 - SDK_URL=https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$SDK_VERSION.zip
 - wget $SDK_URL -nv
-- unzip -q google_appengine_$SDK_VERSION.zip
+- unzip -q google_appengine_$SDK_VERSION.zip -d ${HOME}/.cache/google_appengine
 
 install:
     - "pip install -r test_requirements.txt --use-mirrors"
