@@ -6,10 +6,8 @@ python:
     - "2.7"
 
 env:
-env:
 - GAE=${HOME}/.cache/google_appengine
-  global:
-  - API_CHECK=https://appengine.google.com/api/updatecheck
+- API_CHECK=https://appengine.google.com/api/updatecheck
 
 before_script:
 # Idea from https://blog.bekt.net/p/gae-sdk/
