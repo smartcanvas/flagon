@@ -1,7 +1,21 @@
+sudo: false
 language: python
+
 python:
     - "3.3"
     - "2.7"
+
+env:
+  global:
+  - API_CHECK=https://appengine.google.com/api/updatecheck
+
+before_script:
+# Idea from https://blog.bekt.net/p/gae-sdk/
+- SDK_VERSION=$(curl -s $API_CHECK | awk -F '\"' '/release/ {print $2}')
+- SDK_URL=https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$SDK_VERSION.zip
+- wget $SDK_URL -nv
+- unzip -q google_appengine_$SDK_VERSION.zip
+
 install:
     - "pip install -r test_requirements.txt --use-mirrors"
 script:
