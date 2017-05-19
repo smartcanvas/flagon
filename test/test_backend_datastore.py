@@ -32,7 +32,7 @@ except ImportError:
     HAS_APPENGINE_SDK = False
 
 
-@unittest.skipUnless(HAS_APPENGINE_SDK, "Requires Appengine SDK")
+@unittest.skipUnless(HAS_APPENGINE_SDK, "Requires Appengine Python SDK")
 class TestAppengineDatastoreBackend(TestCase):
     """
     Test the mongo database backend class.
