@@ -22,6 +22,8 @@
 
 from . import TestCase
 
+import unittest
+
 try:
     from flagon.backends.google_cloud_datastore import AppEngineDatastoreBackend, FeatureToggle
     from google.appengine.ext import ndb
