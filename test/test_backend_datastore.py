@@ -22,9 +22,8 @@
 
 from . import TestCase
 
-from flagon.backends.google_cloud_datastore import AppEngineDatastoreBackend, FeatureToggle
-
 try:
+    from flagon.backends.google_cloud_datastore import AppEngineDatastoreBackend, FeatureToggle
     from google.appengine.ext import ndb
     from google.appengine.ext import testbed
     HAS_APPENGINE_SDK = True
