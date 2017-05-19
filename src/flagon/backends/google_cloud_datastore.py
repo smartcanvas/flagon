@@ -36,7 +36,7 @@ class FeatureToggle(ndb.Model):
     strategy_params_values = ndb.StringProperty('strategyParamsValues', indexed=False, repeated=True)
 
 
-class DatastoreBackend(Backend):
+class AppEngineDatastoreBackend(Backend):
     """Appengine Datastore Backend for flagon"""
 
     def __init__(self):

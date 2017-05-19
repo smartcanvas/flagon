@@ -21,12 +21,18 @@
 # IN THE SOFTWARE.
 
 from . import TestCase
-from flagon.backends.datastore import DatastoreBackend, FeatureToggle
 
-from google.appengine.ext import ndb
-from google.appengine.ext import testbed
+from flagon.backends.google_cloud_datastore import AppEngineDatastoreBackend, FeatureToggle
+
+try:
+    from google.appengine.ext import ndb
+    from google.appengine.ext import testbed
+    HAS_APPENGINE_SDK = True
+except ImportError:
+    HAS_APPENGINE_SDK = False
 
 
+@unittest.skipUnless(HAS_APPENGINE_SDK, "Requires Appengine SDK")
 class TestAppengineDatastoreBackend(TestCase):
     """
     Test the mongo database backend class.
@@ -40,7 +46,7 @@ class TestAppengineDatastoreBackend(TestCase):
         # Next, declare which service stubs you want to use.
         self.testbed.init_datastore_v3_stub()
         self.testbed.init_memcache_stub()
-        self.backend = DatastoreBackend()
+        self.backend = AppEngineDatastoreBackend()
 
         FeatureToggle(id='input', enabled=True).put()
         FeatureToggle(id='isoff', enabled=False).put()

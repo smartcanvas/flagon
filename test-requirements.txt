@@ -1,9 +1,11 @@
 SQLAlchemy
 Django
 configobj
-pep8
+flake8
 nose
 coverage
 pymongo
 mock
+werkzeug
+six
 ndb

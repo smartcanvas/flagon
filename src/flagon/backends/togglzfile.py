@@ -22,6 +22,8 @@
 """
 Togglz file format backend.
 """
+from __future__ import print_function
+
 import warnings
 
 warnings.warn('TogglzFileBackend is not safe for multi-write environments')
@@ -31,9 +33,9 @@ from flagon.backends import Backend
 
 try:
     from configobj import ConfigObj
-except ImportError, ie:
-    print "You must install configobj for TogglzFileBackend"
-    print "http://www.voidspace.org.uk/python/configobj.html#installing"
+except ImportError as ie:
+    print("You must install configobj for TogglzFileBackend")
+    print("http://www.voidspace.org.uk/python/configobj.html#installing")
     raise ie
 
 
@@ -104,5 +106,5 @@ class TogglzFileBackend(Backend):
         self._store[name] = value
         self._write_file()
 
-    turn_on = lambda s, name: _turn(s, name, 'true')
-    turn_off = lambda s, name: _turn(s, name, 'false')
+    turn_on = lambda s, name: s._turn(name, 'true')
+    turn_off = lambda s, name: s._turn(name, 'false')
